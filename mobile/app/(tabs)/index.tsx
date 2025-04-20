@@ -1,35 +1,14 @@
-import { Image, StyleSheet, Platform, View, Text } from 'react-native';
-
-// import { HelloWave } from '@/components/HelloWave';
-// import ParallaxScrollView from '@/components/ParallaxScrollView';
-// import { ThemedText } from '@/components/ThemedText';
-// import { ThemedView } from '@/components/ThemedView';
+import { Image, StyleSheet, Platform, View, Text, FlatList } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   return (
-    <View>
-      <Text style={{ color: "white" }}>
-        This is my home
-      </Text>
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView className="flex w-full items-center">
+      <Text className="text-white p-16">
+          This is my home
+        </Text>     
+      </SafeAreaView>   
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
