@@ -10,6 +10,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 // import { MaterialIcons } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -32,7 +33,7 @@ export default function TabLayout() {
         }),
         tabBarIconStyle: {
           marginTop: 4
-        }
+        },
       }}>
       <Tabs.Screen
         name="index"
@@ -42,7 +43,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="profile"
         options={{
           tabBarIcon: ({ color }) => 
             <MaterialIcons name="person" size={28} color={color} />
