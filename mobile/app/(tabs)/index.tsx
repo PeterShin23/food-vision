@@ -6,8 +6,12 @@ import { Image, StyleSheet, Platform, View, Text, FlatList, TouchableOpacity } f
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   const onOpenCameraPress = () => {
-    console.log("let's open the camera");
+    router.push({
+      pathname: "/imageSelection"
+    });
   };
 
   return (
