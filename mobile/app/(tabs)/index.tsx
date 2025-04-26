@@ -1,8 +1,8 @@
 import { RecipeListItem } from '@/components/ui/recipeItem';
 import { mockHistory } from '@/constants/mockdata';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { Image, StyleSheet, Platform, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
@@ -18,7 +18,7 @@ export default function HomeScreen() {
     <SafeAreaProvider>
       <SafeAreaView className="flex w-full h-full items-center">
         <TouchableOpacity style={styles.openCamera} onPress={onOpenCameraPress}>
-          <MaterialCommunityIcons name="camera-iris" size={24} color="black" />        
+          <MaterialIcons name="ramen-dining" size={24} color="black" />        
         </TouchableOpacity>
         <FlatList
           data={mockHistory}

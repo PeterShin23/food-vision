@@ -57,7 +57,6 @@ export const useUserMedia = () => {
 
   return {
     images,
-    setImages,
     onOpenGallery,
     onOpenCamera,
   }
