@@ -19,10 +19,8 @@ const ProcessImagesScreen = () => {
 
   React.useEffect(() => {
     const process = async () => {
-      console.log("Will be processing images here", images);
-
       // TODO: Run through CV
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 9000));
 
       setIsLoading(false);
     };
