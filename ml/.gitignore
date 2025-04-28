@@ -1,0 +1,4 @@
+datasets/group_work.v3i.yolov8/test
+datasets/group_work.v3i.yolov8/train
+datasets/group_work.v3i.yolov8/valid
+datasets/group_work.v3i.yolov8/.DS_Store

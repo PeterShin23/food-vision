@@ -16,3 +16,9 @@ start:
 stop:
 	pkill -f "uvicorn app.main:app" || true
 	pkill -f "expo" || true
+
+
+# -- ML --
+train-model:
+	pip install ultralytics
+	yolo detect train data=./ml/datasets/group_work.v3i.yolov8/data.yaml model=ml/models/yolov8n.pt epochs=5 imgsz=416 batch=8
