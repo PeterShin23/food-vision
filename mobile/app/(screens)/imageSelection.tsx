@@ -3,15 +3,18 @@ import { StyleSheet, TouchableOpacity, View, Text, Alert } from "react-native";
 import { useUserMedia } from "@/hooks/useUserMedia";
 import { Stack, useRouter } from "expo-router";
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { useImageContext } from "../contexts/imageContext";
 
 const ImageSelectionScreen = () => {
   const { images, onOpenGallery, onOpenCamera } = useUserMedia()
   const router = useRouter();
+  const { setImages } = useImageContext();
 
   const processImages = (images: string[]) => {
+    setImages(images);
+
     router.push({
       pathname: "/processImages",
-      params: { images: JSON.stringify(images) }
     });
   }
 

@@ -2,7 +2,7 @@
 
 # Start backend
 backend:
-	cd backend && uvicorn app.main:app --reload
+	cd backend && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 # Start mobile app (assuming Expo for React Native)
 mobile:

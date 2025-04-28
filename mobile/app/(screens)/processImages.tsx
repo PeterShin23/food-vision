@@ -1,7 +1,9 @@
-import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as React from "react";
 import LoadingScreen from "./loading";
 import { View, Text } from "react-native";
+import { useImageContext } from '../contexts/imageContext';
+import { useIngredientContext } from "../contexts/ingredientsContext";
 
 const processedMessage = [
   "Drumroll please!",
@@ -11,34 +13,68 @@ const processedMessage = [
 ]
 
 const ProcessImagesScreen = () => {
-  const { images } = useLocalSearchParams();
   const router = useRouter();
+  const { images } = useImageContext();
+  const { setIngredients } = useIngredientContext();
 
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [processedResult, setProcessedResult] = React.useState(null);
+  const [processedResult, setProcessedResult] = React.useState<string[][]>(null);
 
   React.useEffect(() => {
     const process = async () => {
-      // TODO: Run through CV
-      await new Promise((resolve) => setTimeout(resolve, 9000));
+      if (!images?.length) return;
+      
+      try {
+        const formData = new FormData();
 
-      setIsLoading(false);
+        images.forEach((imageUri) => {
+          const filename = imageUri.split('/').pop();
+          const match = /\.(\w+)$/.exec(filename ?? '');
+          const type = match ? `image/${match[1]}` : 'image';
+    
+          formData.append('files', {
+            uri: imageUri,
+            name: filename,
+            type,
+          } as any);
+        });
+    
+        const response = await fetch('http://10.0.0.43:8000/predict/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          body: formData,
+        });    
+
+        const data = await response.json();
+
+        setProcessedResult(data.results);
+
+        return data.results;
+      } catch (error) {
+        console.error('Error processing images:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    process();
+    process().then(res => console.log(res));
   }, []);
 
   React.useEffect(() => {
     if (isLoading) return;
 
-    // TODO: Should send to verify screen then OpenAI
+    if (!processedResult) return;
+
     setTimeout(() => {
+      setIngredients(processedResult.flatMap(x => x))
+
       router.push({
-        pathname: "/viewRecipe",
-        params: { processedResult }
+        pathname: "/listIngredients",
       })
     }, 2000);
-  }, [isLoading])
+  }, [isLoading, processedResult])
 
   const message = processedMessage[Math.floor(Math.random() * processedMessage.length)];
 

@@ -1,4 +1,6 @@
 fastapi
 uvicorn
-sqlalchemy
+ultralytics
+torch
 pydantic
+python-multipart
