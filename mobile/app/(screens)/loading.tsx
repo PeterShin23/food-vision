@@ -28,12 +28,12 @@ const LoadingScreen = () => {
     const cycle = () => {
       prog.value = 0;
       prog.value = withSequence(
-        withTiming(1, { duration: 800, easing: Easing.out(Easing.ease) }),  // move right ➔ center
+        withTiming(1, { duration: 800, easing: Easing.out(Easing.ease) }),  // move right -> center
         withTiming(1.05, { duration: 100 }),                                 // quick pause
         withTiming(1.2, { duration: 200, easing: Easing.out(Easing.exp) }),  // bounce UP (slower + floaty)
         withTiming(1.3, { duration: 180, easing: Easing.in(Easing.exp) }),   // bounce DOWN (slightly faster)
         withTiming(1.4, { duration: 150 }),                                 // settle pause
-        withTiming(2, { duration: 800, easing: Easing.in(Easing.ease) })    // move center ➔ left
+        withTiming(2, { duration: 800, easing: Easing.in(Easing.ease) })    // move center -> left
       );
 
       setTimeout(() => {
